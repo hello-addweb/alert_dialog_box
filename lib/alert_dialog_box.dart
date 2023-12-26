@@ -1,6 +1,6 @@
 /// Documentation
 ///
-/// custom_network_image library collection.
+/// alert_dialog_box library collection.
 library alert_dialog_box;
 
 import 'package:flutter/material.dart';

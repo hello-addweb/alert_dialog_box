@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text("Custom Network Image"),
+          title: const Text("Alert Dialog Box"),
         ),
         body: const Center(
           child: Column(children: [
