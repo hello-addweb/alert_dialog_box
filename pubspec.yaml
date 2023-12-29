@@ -1,7 +1,7 @@
-name: alert_dialog_box
+name: alert_dialog_box_v1
 
 description: "A flutter library to show alert dialog box with custom design and decoration."
-version: 0.0.1
+version: 0.0.2
 # author: AddWeb Solution Dev(Sultan Singh)
 homepage: https://github.com/hello-addweb/alert_dialog_box
 

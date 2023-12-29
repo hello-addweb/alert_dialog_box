@@ -14,9 +14,7 @@ and the Flutter guide for
 
 # Alert Dialog Box
 
-```alert_dialog_box```  A Flutter library to show alert dialog box with custom design and decoration.  ✨
-
-It's support some type of image decoration such as [ sizeOfImage, isCircular, isCircularBorder, isCurve or isCurveBorder], etc.
+```alert_dialog_box```  An Alert Dialog Box package is allows developers to easily create and display alert dialogs with custom design. Emerge dialogs are used to display important information or messages to the user and often include a call to action, such as a button to confirm or dismiss the dialog.  ✨
 
 
 ## Installation
@@ -30,7 +28,7 @@ flutter create MyApp
 Add
 
 ```yaml
-alert_dialog_box: ...
+alert_dialog_box_v1: ...
 ```
 
 to your `pubspec.yaml` of your flutter project.
@@ -38,7 +36,7 @@ to your `pubspec.yaml` of your flutter project.
 run
 
 ```yaml
-flutter pub add alert_dialog_box
+flutter pub add alert_dialog_box_v1
 ```
 
 in your project's root directory.
@@ -46,7 +44,7 @@ in your project's root directory.
 In your library add the following import:
 
 ```dart
-import 'package:alert_dialog_box/alert_dialog_box.dart';
+import 'package:alert_dialog_box/alert_dialog_box_v1.dart';
 ```
 
 For help getting started with Flutter, view the online [documentation](https://flutter.io/).
@@ -75,22 +73,84 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  void _yesNoAlertDialogBox(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialogBox(
+        title: "Are you liking it?",
+        message:
+        "Do you think my library is awesome and want have a try?\n\nNote: Fell free to open PR to improve it :)",
+        onConfirmPressed: () {
+          Navigator.of(context, rootNavigator: true).pop('dialog');
+          print("do something on confirm");
+          log("do something on confirm");
+        },
+        onCancelPressed: () {
+          Navigator.of(context, rootNavigator: true).pop('dialog');
+          print("do something on confirm");
+          log("do something on confirm");
+        },
+      ),
+    );
+  }
+
+  void _okAlertDialogBox(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialogBox(
+        isDismissible: true,
+        isOkButtonAlertDialog: true,
+        title: "This is an dismissable alert!",
+        message:
+        "Hey, you can only dismiss this alert dialog. And also, don't tap again in that button. You have been alerted!",
+        onOkPressed: () {
+          Navigator.of(context, rootNavigator: true).pop('dialog');
+          print("do something on confirm");
+          log("do something on confirm");
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text(widget.title),
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              MaterialButton(
+                onPressed: () => _okAlertDialogBox(context),
+                color: Colors.blue,
+                child: const Text(
+                  "Send a Dismissable Alert",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              MaterialButton(
+                onPressed: () => _yesNoAlertDialogBox(context),
+                color: Colors.green,
+                child: const Text(
+                  "Send a Accept/Cancel Alert",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-        body: Center(
-          child: Column(children: [
-
-          ],),
-        )
+      ),
     );
   }
 }
@@ -101,13 +161,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
 #### Basic
 
-| Parameter       | Default | Description                          | Required |
-|-----------------|:--------|:-------------------------------------|:--------:|
-| url             | -       | Image base url.                      |   True   |
-| curveValue      | -       | Curve value if curve is set to true. |  false   |
-| borderColor     | -       | Image border color.                  |  false   |
-| radius          | -       | Circle avatar radius.                |  false   |
-| borderThickness | -       | Image border thickness               |  false   |
-| isCircular      | false   | Set true if show circular box        |  false   |
-| isCurve         | false   | Image curve flag                     |  false   |
-| isCurveBorder   | false   | Image curve wit border flag          |  false   |
+| Parameter             | Default | Description                          | Required |
+|-----------------------|:--------|:-------------------------------------|:--------:|
+| title                 | -       | Alert dialog title.                  |   True   |
+| message               | -       | Body message of Alert dialog.        |   True   |
+| onConfirmPressed      | -       | On Confirm callback function.        |  false   |
+| onCancelPressed       | -       | On Cancel callback function.         |  false   |
+| isDismissible         | false   | Set true to have a dismissable alert |  false   |
+| isOkButtonAlertDialog | false   | Set true to have a Ok button alert   |  false   |
